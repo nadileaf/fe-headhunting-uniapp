@@ -1,6 +1,6 @@
 {
   "name": "CGL",
-  "appid": "wxa2c48881541de2e1",
+  "appid": "wxf5f9c7d50481b478",
   "description": "",
   "versionName": "1.0.0",
   "versionCode": "100",
@@ -50,7 +50,7 @@
   "quickapp": {},
   /* 小程序特有相关 */
   "mp-weixin": {
-    "appid": "wxa2c48881541de2e1",
+    "appid": "wxf5f9c7d50481b478",
     "setting": {
       "urlCheck": true,
       "minified": true
@@ -63,9 +63,7 @@
         "desc": "你的位置信息将用于小程序位置接口的效果展示"
       }
     },
-    "requiredPrivateInfos": [
-      "getLocation"
-    ]
+    "requiredPrivateInfos": ["getLocation"]
   },
   "mp-alipay": {
     "usingComponents": true

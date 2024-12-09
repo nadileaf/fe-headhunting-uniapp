@@ -1,7 +1,7 @@
 {
   "name": "fe-sts-uniapp",
   "version": "0.1.0",
-  "appId": "wxa2c48881541de2e1",
+  "appId": "wxf5f9c7d50481b478",
   "scripts": {
     "dev": "pnpm dev:mp-weixin",
     "prod": "pnpm build:mp-weixin",
