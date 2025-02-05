@@ -44,7 +44,7 @@ function handleNext() {
     return message.error('【跳槽回报率】不能为 0，因为无收益时跳槽无意义！');
   }
 
-  router.push('/pages/index/ros', {
+  router.push('/pages/sts-evaluation/ros', {
     data: {
       bWeights: weights.value,
       bScores: scores.value

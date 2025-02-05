@@ -1,11 +1,16 @@
 <script lang="ts" setup>
 import { useRouter } from '@/hooks/useRouter';
 import Layout from '@/components/business/job-hopping/layout.vue';
+import { useShare } from '@/hooks/useShare';
+import { onShareAppMessage } from '@dcloudio/uni-app';
+import { generateUrl } from '@/utils/common';
 
 const router = useRouter();
 
+useShare({ title: 'STS测评', path: generateUrl(router.currentPageUrl) });
+
 function handleStart() {
-  router.push('/pages/index/ror');
+  router.push('/pages/sts-evaluation/ror');
 }
 </script>
 

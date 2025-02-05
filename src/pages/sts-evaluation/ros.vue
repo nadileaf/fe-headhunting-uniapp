@@ -54,8 +54,10 @@ async function handleNext() {
   try {
     const res = await difyService.getKellyCriterionScore(params);
     console.log('res', res);
-    router.push('/pages/index/result', {
-      data: { score: res.score }
+    router.push('/pages/sts-evaluation/result', {
+      query: {
+        score: res.score.toFixed(2).toString()
+      }
     });
   } catch (error) {
     console.error(error);
