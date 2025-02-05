@@ -1,15 +1,18 @@
 <script lang="ts" setup>
 import { useRouter } from '@/hooks/useRouter';
 import Layout from '@/components/business/job-hopping/layout.vue';
-import MButton from '@/components/basic/MButton.vue';
-import { withCdnPrefix } from '@/utils/file';
+import { useShare } from '@/hooks/useShare';
+import { onShareAppMessage } from '@dcloudio/uni-app';
+import { generateUrl } from '@/utils/common';
 
-type RouterData = {
-  score: number;
-};
+const props = defineProps<{ score: string }>();
 
-const router = useRouter<RouterData>();
-const score = ref(router.routerData?.score ?? 0.49);
+const router = useRouter();
+
+const scoreNum = computed(() => Number(props.score ?? 0));
+const sharePath = computed(() => generateUrl(router.currentPageUrl, props));
+
+useShare({ title: '跳槽决策结果', path: sharePath });
 
 function getScoreResult(score: number): { text: string; color: string } {
   if (score >= 0.9) return { text: '我们建议您可以安心跳槽', color: '#22c55e' };
@@ -23,7 +26,7 @@ function getScoreResult(score: number): { text: string; color: string } {
   return { text: '我们不建议您此时跳槽。', color: '#FF4D4F' };
 }
 
-const scoreResult = computed(() => getScoreResult(score.value));
+const scoreResult = computed(() => getScoreResult(scoreNum.value));
 const showOfficialAccount = ref(false);
 
 function handleSubscribe() {
@@ -45,7 +48,7 @@ function onOfficialAccountError(e: any) {
       <!-- <MImage :src="withCdnPrefix('/custom/cgl/assets/job-hopping/trophy.png')" width="234px" height="159px"></MImage> -->
       <view class="text-xl font-bold mt-4">评估得分</view>
       <view class="text-6xl font-bold mt-4" :style="{ color: scoreResult.color }">
-        {{ score.toFixed(2) }}
+        {{ scoreNum }}
       </view>
     </view>
     <view class="mt-8 text-[#356899]">

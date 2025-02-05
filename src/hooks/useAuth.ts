@@ -2,6 +2,7 @@ import { authService } from '@/services/auth';
 import { useAuthStore, useUserStore } from '@/stores';
 import { useRouter } from './useRouter';
 import { confirm } from '@/utils/common';
+import { HOME_PAGE } from '@/config';
 
 export const useAuth = () => {
   const authStore = useAuthStore();
@@ -48,7 +49,7 @@ export const useAuth = () => {
         tenantId: import.meta.env.VITE_AUTH_TENANT_ID
       });
       await authService.getUserInfoByToken();
-      useRouter().reLaunch('/pages/index/index');
+      useRouter().reLaunch(HOME_PAGE);
     }
   }
 

@@ -13,7 +13,7 @@ export const BG_COLOR = '#f9f9fd';
 export const APP_DEFAULT_TITLE = 'CGL';
 
 /** 首页 */
-export const HOME_PAGE: RoutePages.Path = '/pages/index/index';
+export const HOME_PAGE: RoutePages.Path = '/pages/sts-evaluation/index';
 
 /** 认证页 */
 // export const AUTH_PAGE: RoutePages.Path = '/pages/auth/register-B';

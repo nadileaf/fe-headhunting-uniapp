@@ -1,28 +1,35 @@
 {
   "pages": [
     {
-      "path": "pages/index/index",
+      "path": "pages/index/launch",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/sts-evaluation/index",
       "style": {
         "navigationBarTitleText": "STS测评",
         "backgroundColor": "#ffffff"
       }
     },
     {
-      "path": "pages/index/ror",
+      "path": "pages/sts-evaluation/ror",
       "style": {
         "navigationBarTitleText": "跳槽公式（回报率）",
         "backgroundColor": "#ffffff"
       }
     },
     {
-      "path": "pages/index/ros",
+      "path": "pages/sts-evaluation/ros",
       "style": {
         "navigationBarTitleText": "跳槽公式（成功率）",
         "backgroundColor": "#ffffff"
       }
     },
     {
-      "path": "pages/index/result",
+      "path": "pages/sts-evaluation/result",
       "style": {
         "navigationBarTitleText": "跳槽决策结果",
         "backgroundColor": "#ffffff"
