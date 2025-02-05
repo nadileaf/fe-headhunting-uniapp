@@ -1,6 +1,6 @@
 {
   "name": "fe-headhunting-uniapp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "appId": "wx147d3309eacddda3",
   "scripts": {
     "dev": "pnpm dev:mp-weixin",

@@ -4,6 +4,7 @@ import { generateUrl } from '@/utils/common';
 import { useAuthStore } from '@/stores';
 import { HOME_PAGE } from '@/config';
 import { type MaybeRef, unref } from 'vue';
+import { useRouter } from './useRouter';
 
 /**
  * @description 默认分享
@@ -22,7 +23,13 @@ export function useShare(params?: { title?: MaybeRef<string>; path?: MaybeRef<st
     })
   );
 
-  onShow(() => !authStore.isNormalUser && uni.hideHomeButton());
+  const router = useRouter();
+
+  onShow(() => {
+    if (router.currentPageUrl === HOME_PAGE) {
+      uni.hideHomeButton();
+    }
+  });
 
   onShareAppMessage(() => {
     console.log('targetPath', targetPath.value);
