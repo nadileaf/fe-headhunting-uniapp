@@ -45,7 +45,7 @@ export function useShare(params?: { title?: MaybeRef<string>; path?: MaybeRef<st
       imageUrl:
         params?.imageUrl === 'default '
           ? undefined
-          : unref(params?.imageUrl) ?? 'https://cdn-fe.mesoor.com/custom/cgl/assets/logo/logo-share.png'
+          : unref(params?.imageUrl) ?? 'https://cdn-fe.mesoor.com/custom/cgl/assets/logo/sts-share.jpg'
     };
   });
 }
