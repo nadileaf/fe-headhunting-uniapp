@@ -27,20 +27,20 @@ const address = ref(`${decodeURIComponent(props.city ?? '')}${decodeURIComponent
 onMounted(() => initMap());
 
 async function initMap() {
-  await initLocation();
+  // await initLocation();
   await initMarker();
   await initAddress();
 }
 
-async function initLocation() {
-  if (!longitude.value || !latitude.value) {
-    const loc = await uni.getLocation({
-      type: 'gcj02'
-    });
-    longitude.value = loc.longitude;
-    latitude.value = loc.latitude;
-  }
-}
+// async function initLocation() {
+//   if (!longitude.value || !latitude.value) {
+//     const loc = await uni.getLocation({
+//       type: 'gcj02'
+//     });
+//     longitude.value = loc.longitude;
+//     latitude.value = loc.latitude;
+//   }
+// }
 
 async function initMarker() {
   markers.value = [

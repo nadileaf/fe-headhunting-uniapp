@@ -98,15 +98,15 @@ export const authService = {
   },
 
   /** @deprecated 微信小程序已经获取不到真实user */
-  async getUserInfo(): Promise<UniApp.GetUserProfileRes> {
-    const lang = 'zh_CN';
-    const authStore = useAuthStore();
-    return new Promise((success, fail) =>
-      uni.getUserProfile
-        ? uni.getUserProfile({ desc: '用于完善会员资料', lang, success, fail })
-        : uni.getUserInfo({ provider: authStore.client, lang, success, fail })
-    );
-  },
+  // async getUserInfo(): Promise<UniApp.GetUserProfileRes> {
+  //   const lang = 'zh_CN';
+  //   const authStore = useAuthStore();
+  //   return new Promise((success, fail) =>
+  //     uni.getUserProfile
+  //       ? uni.getUserProfile({ desc: '用于完善会员资料', lang, success, fail })
+  //       : uni.getUserInfo({ provider: authStore.client, lang, success, fail })
+  //   );
+  // },
 
   async getPhoneNumber(code: string) {
     const openId = await this.loginWx();
