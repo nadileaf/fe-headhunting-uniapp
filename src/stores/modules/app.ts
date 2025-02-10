@@ -37,20 +37,20 @@ export const useAppStore = defineStore('app', {
   }),
   getters: {},
   actions: {
-    async initLocation() {
-      try {
-        this.location = await uni.getLocation({
-          type: 'gcj02'
-        });
-      } catch (error) {
-        this.location = { longitude: 116.470314, latitude: 39.910742 };
-      }
+    // async initLocation() {
+    //   try {
+    //     this.location = await uni.getLocation({
+    //       type: 'gcj02'
+    //     });
+    //   } catch (error) {
+    //     this.location = { longitude: 116.470314, latitude: 39.910742 };
+    //   }
 
-      console.log('this.location', this.location);
-      this.location = await mapService.getLocation();
-      const regeocode = await mapService.getRegeo(this.location);
-      this.location.addr = regeocode.addressComponent as Addr;
-    },
+    //   console.log('this.location', this.location);
+    //   this.location = await mapService.getLocation();
+    //   const regeocode = await mapService.getRegeo(this.location);
+    //   this.location.addr = regeocode.addressComponent as Addr;
+    // },
     initAppLayoutInfo() {
       this.menuButtonInfo = uni.getMenuButtonBoundingClientRect();
     }
