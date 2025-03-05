@@ -17,11 +17,11 @@ interface QueryBannerParams {
 }
 
 export const bannerService = {
-  async query(params?: QueryBannerParams) {
+  async query({ projectName }: QueryBannerParams) {
     try {
       const result = await request.get<QueryTasksRes<'NationalBanner'>>(
         mesoorSpacePrefixUrl(`/mini-app/v1/banners`),
-        { params },
+        { projectName },
         {
           handleResponseData: false,
           hideErrorMessage: true
