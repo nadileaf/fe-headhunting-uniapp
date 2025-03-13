@@ -172,7 +172,7 @@ const option = computed(() => {
     <view class="flex flex-col items-center">
       <OptionChart style="width: 100%; height: 300px" :option="option" />
     </view>
-    <view class="text-[#356899] text-sm">
+    <view class="mt-[-20px] text-[#356899] text-sm">
       <view class="text-center">根据公式推演，{{ scoreResult.text }}</view>
       <view class="mt-3 text-center">
         <view class="">请关注公众号"猎头村村长频道"回复"神州猎测评"</view>

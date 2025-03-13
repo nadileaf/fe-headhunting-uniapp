@@ -92,7 +92,7 @@ function handleReset() {
     <view class="section-title">b（跳槽回报） - 薪资收入的提升/减少</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="bWeights.b_salary_weight" type="number" disabled />
+        <input v-model="bWeights.b_salary_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -103,7 +103,7 @@ function handleReset() {
     <view class="section-title">b（跳槽回报） - 技能/经验提升/减少</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="bWeights.b_career_weight" type="number" disabled />
+        <input v-model="bWeights.b_career_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -114,7 +114,7 @@ function handleReset() {
     <view class="section-title">b（跳槽回报） - 工作生活平衡度提升/减少</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="bWeights.b_wl_balance_weight" type="number" disabled />
+        <input v-model="bWeights.b_wl_balance_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -125,7 +125,7 @@ function handleReset() {
     <view class="section-title">b（跳槽回报） - 职位名称的受尊敬度提升/减少</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="bWeights.b_life_persp_weight" type="number" disabled />
+        <input v-model="bWeights.b_life_persp_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -143,7 +143,7 @@ function handleReset() {
     <view class="section-title">p（跳槽风险） - 新公司文化匹配度</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="pWeights.p_culture_weight" type="number" disabled />
+        <input v-model="pWeights.p_culture_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -154,7 +154,7 @@ function handleReset() {
     <view class="section-title">p（跳槽风险） - 经验技能与岗位匹配度</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="pWeights.p_skill_weight" type="number" disabled />
+        <input v-model="pWeights.p_skill_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -165,7 +165,7 @@ function handleReset() {
     <view class="section-title">p（跳槽风险） - 新公司行业景气度</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="pWeights.p_industry_weight" type="number" disabled />
+        <input v-model="pWeights.p_industry_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -176,7 +176,7 @@ function handleReset() {
     <view class="section-title">p（跳槽风险） - 新公司稳定和盈利能力</view>
     <view class="section-body">
       <view class="input-container">
-        <input v-model="pWeights.p_stablecomp_weight" type="number" disabled />
+        <input v-model="pWeights.p_stablecomp_weight" type="number" />
         <text class="suffix">%</text>
       </view>
       <view class="input-container">
@@ -199,7 +199,7 @@ function handleReset() {
 @import './style.scss';
 
 .input-container {
-  input:disabled {
+  input: {
     background-color: #f5f5f5;
     color: #999;
   }
