@@ -4,6 +4,7 @@ import Layout from '@/components/business/job-hopping/layout.vue';
 import { useShare } from '@/hooks/useShare';
 import { onShareAppMessage } from '@dcloudio/uni-app';
 import { generateUrl } from '@/utils/common';
+import OptionChart from '@/components/business/option-chart/index.vue';
 
 const props = defineProps<{ score: string }>();
 
@@ -83,99 +84,95 @@ function onOfficialAccountError(e: any) {
   console.log('official-account load error', e);
 }
 
-const chartId = 'myChart';
-const chartStyles = 'width: 100%; height: 180px;';
-
-const getGaugeSegments = computed(() => {
-  return scoreConfig.map((item) => ({
-    type: item.title,
-    color: item.color,
-    value: item.max
-  }));
+const option = computed(() => {
+  return {
+    series: [
+      {
+        type: 'gauge',
+        startAngle: 180,
+        endAngle: 0,
+        center: ['50%', '65%'],
+        radius: '90%',
+        min: -1,
+        max: 1,
+        splitNumber: 8,
+        axisLine: {
+          lineStyle: {
+            width: 18,
+            color: [
+              [0.65, '#ff4961'], // -1.0 到 0.3
+              [0.75, '#ffc409'], // 0.3 到 0.5
+              [0.9, '#ff8534'], // 0.5 到 0.8
+              [0.95, '#17cfbe'], // 0.8 到 0.9
+              [1.0, '#2dd36f'] // 0.9 到 1.0
+            ]
+          }
+        },
+        pointer: {
+          icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+          length: '12%',
+          width: 10,
+          offsetCenter: [0, '-56%'],
+          itemStyle: {
+            color: 'auto'
+          }
+        },
+        axisTick: {
+          length: 10,
+          lineStyle: {
+            color: 'auto',
+            width: 1
+          }
+        },
+        splitLine: {
+          length: 16,
+          lineStyle: {
+            color: 'auto',
+            width: 3
+          }
+        },
+        axisLabel: {
+          color: '#464646',
+          fontSize: 14,
+          distance: -40,
+          rotate: 'tangential',
+          formatter: function (value: number) {
+            // 只显示关键节点的值
+            const keyPoints = [-1, -0.5, 0, 0.5, 1];
+            return keyPoints.includes(value) ? value.toString() : '';
+          }
+        },
+        title: {
+          offsetCenter: [0, '-5%'],
+          fontSize: 14
+        },
+        detail: {
+          fontSize: 30,
+          offsetCenter: [0, '-30%'],
+          valueAnimation: true,
+          formatter: function (value: number) {
+            return value.toFixed(2);
+          },
+          color: 'inherit'
+        },
+        data: [
+          {
+            value: scoreNum.value,
+            name: '得分'
+          }
+        ]
+      }
+    ]
+  };
 });
-
-const spec = computed(() => ({
-  type: 'gauge',
-  data: [
-    {
-      id: 'pointer',
-      values: [
-        {
-          type: 'score',
-          value: scoreNum.value
-        }
-      ]
-    },
-    {
-      id: 'segment',
-      values: getGaugeSegments.value
-    }
-  ],
-  gauge: {
-    type: 'gauge',
-    dataIndex: 1,
-    categoryField: 'type',
-    valueField: 'value',
-    seriesField: 'type',
-    segment: {
-      style: {
-        cornerRadius: 6,
-        fill: (datum: any) => datum['color']
-      }
-    },
-    label: {
-      visible: true,
-      position: 'inside-outer',
-      offsetRadius: 6,
-      style: {
-        text: (datum: any) => datum['type']
-      }
-    }
-  },
-  pointer: {
-    style: {
-      fill: '#666666'
-    }
-  },
-  categoryField: 'type',
-  valueField: 'value',
-  outerRadius: 0.9,
-  innerRadius: 0.6,
-  startAngle: -180,
-  endAngle: 0,
-  centerY: '100%',
-  layoutRadius: 'auto',
-  axes: [
-    {
-      type: 'linear',
-      orient: 'angle',
-      inside: false,
-      grid: { visible: false }
-    }
-  ]
-}));
-
-const onChartInit = () => {
-  console.log('Chart initialized');
-};
-
-const onChartReady = () => {
-  console.log('Chart ready');
-};
 </script>
 
 <template>
   <Layout>
     <view class="flex flex-col items-center">
-      <view class="chart-container">
-        <chart :canvas-id="chartId" :spec="spec" :styles="chartStyles" @chartinit="onChartInit" @chartready="onChartReady" />
-      </view>
-      <view class="text-xl font-bold mt-4">评估得分</view>
-      <view class="text-6xl font-bold mt-4" :style="{ color: scoreResult.color }">
-        {{ scoreNum }}
-      </view>
+      <OptionChart style="width: 100%; height: 300px" :option="option" />
     </view>
-    <view class="mt-8 text-[#356899]">
+    <view class="text-[#356899] text-sm">
       <view class="text-center">根据公式推演，{{ scoreResult.text }}</view>
       <view class="mt-3 text-center">
         <view class="">请关注公众号"猎头村村长频道"回复"神州猎测评"</view>

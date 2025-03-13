@@ -39,10 +39,7 @@
       "path": "pages/sts-evaluation/result",
       "style": {
         "navigationBarTitleText": "跳槽决策结果",
-        "backgroundColor": "#ffffff",
-        "usingComponents": {
-          "chart": "/wxcomponents/chart/index"
-        }
+        "backgroundColor": "#ffffff"
       }
     }
   ],
