@@ -9,10 +9,12 @@ interface Scores {
   [key: string]: number | null;
 }
 
+export const defaultWeight = 25;
+
 export function useWeightScore(weights: Ref<Weights>, scores: Ref<Scores>) {
   const handleReset = () => {
     weights.value = Object.keys(weights.value).reduce((acc, key) => {
-      acc[key] = null;
+      acc[key] = defaultWeight;
       return acc;
     }, {} as Weights);
 

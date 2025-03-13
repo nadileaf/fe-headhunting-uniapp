@@ -16,13 +16,14 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
-        primary: '#356899',
+        primary: '#279D9F',
         success: '#4b9148',
         warning: '#f0ad4e',
         danger: '#dd524d',
         'grey-95': '#F2F2F3',
         'grey-90': '#E4E5E7',
-        'grey-60': '#95969D'
+        'grey-60': '#95969D',
+        secondary: '#FF8A34'
       }
     }
   },
