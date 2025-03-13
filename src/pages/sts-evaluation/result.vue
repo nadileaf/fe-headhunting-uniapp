@@ -14,16 +14,58 @@ const sharePath = computed(() => generateUrl(router.currentPageUrl, props));
 
 useShare({ title: '跳槽决策结果', path: sharePath });
 
+interface ScoreConfigItem {
+  min: number;
+  max: number;
+  title: string;
+  text: string;
+  color: string;
+}
+
+const scoreConfig: ScoreConfigItem[] = [
+  {
+    min: 0.9,
+    max: 1,
+    title: '安心跳槽',
+    text: '我们建议您可以安心跳槽',
+    color: '#2dd36f' // 原 #22c55e，调整为更鲜艳的绿色
+  },
+  {
+    min: 0.8,
+    max: 0.9,
+    title: '顺利跳槽',
+    text: '我们建议您可以顺利跳槽',
+    color: '#17cfbe' // 原 #14b8a6，调整为更亮的蓝绿色
+  },
+  {
+    min: 0.5,
+    max: 0.8,
+    title: '建议跳槽',
+    text: '我们建议您可以跳槽，但可能需要付出一些努力和准备。',
+    color: '#ff8534' // 原 #f97316，调整为更温暖的橙色
+  },
+  {
+    min: 0.3,
+    max: 0.5,
+    title: '慎重考虑',
+    text: '我们建议您慎重考虑跳槽。',
+    color: '#ffc409' // 原 #eab308，调整为更明亮的黄色
+  },
+  {
+    min: -1,
+    max: 0.3,
+    title: '不建议跳槽',
+    text: '我们不建议您此时跳槽。',
+    color: '#ff4961' // 原 #FF4D4F，调整为更鲜艳的红色
+  }
+];
+
 function getScoreResult(score: number): { text: string; color: string } {
-  if (score >= 0.9) return { text: '我们建议您可以安心跳槽', color: '#22c55e' };
-  if (score >= 0.8) return { text: '我们建议您可以顺利跳槽', color: '#14b8a6' };
-  if (score >= 0.5)
-    return {
-      text: '我们建议您可以跳槽，但可能需要付出一些努力和准备。',
-      color: '#f97316'
-    };
-  if (score >= 0.3) return { text: '我们建议您慎重考虑跳槽。', color: '#eab308' };
-  return { text: '我们不建议您此时跳槽。', color: '#FF4D4F' };
+  const result = scoreConfig.find((item) => score >= item.min && score < item.max) ?? scoreConfig[scoreConfig.length - 1];
+  return {
+    text: result.text,
+    color: result.color
+  };
 }
 
 const scoreResult = computed(() => getScoreResult(scoreNum.value));
@@ -40,12 +82,94 @@ function onOfficialAccountLoad(e: any) {
 function onOfficialAccountError(e: any) {
   console.log('official-account load error', e);
 }
+
+const chartId = 'myChart';
+const chartStyles = 'width: 100%; height: 180px;';
+
+const getGaugeSegments = computed(() => {
+  return scoreConfig.map((item) => ({
+    type: item.title,
+    color: item.color,
+    value: item.max
+  }));
+});
+
+const spec = computed(() => ({
+  type: 'gauge',
+  data: [
+    {
+      id: 'pointer',
+      values: [
+        {
+          type: 'score',
+          value: scoreNum.value
+        }
+      ]
+    },
+    {
+      id: 'segment',
+      values: getGaugeSegments.value
+    }
+  ],
+  gauge: {
+    type: 'gauge',
+    dataIndex: 1,
+    categoryField: 'type',
+    valueField: 'value',
+    seriesField: 'type',
+    segment: {
+      style: {
+        cornerRadius: 6,
+        fill: (datum: any) => datum['color']
+      }
+    },
+    label: {
+      visible: true,
+      position: 'inside-outer',
+      offsetRadius: 6,
+      style: {
+        text: (datum: any) => datum['type']
+      }
+    }
+  },
+  pointer: {
+    style: {
+      fill: '#666666'
+    }
+  },
+  categoryField: 'type',
+  valueField: 'value',
+  outerRadius: 0.9,
+  innerRadius: 0.6,
+  startAngle: -180,
+  endAngle: 0,
+  centerY: '100%',
+  layoutRadius: 'auto',
+  axes: [
+    {
+      type: 'linear',
+      orient: 'angle',
+      inside: false,
+      grid: { visible: false }
+    }
+  ]
+}));
+
+const onChartInit = () => {
+  console.log('Chart initialized');
+};
+
+const onChartReady = () => {
+  console.log('Chart ready');
+};
 </script>
 
 <template>
   <Layout>
     <view class="flex flex-col items-center">
-      <!-- <MImage :src="withCdnPrefix('/custom/cgl/assets/job-hopping/trophy.png')" width="234px" height="159px"></MImage> -->
+      <view class="chart-container">
+        <chart :canvas-id="chartId" :spec="spec" :styles="chartStyles" @chartinit="onChartInit" @chartready="onChartReady" />
+      </view>
       <view class="text-xl font-bold mt-4">评估得分</view>
       <view class="text-6xl font-bold mt-4" :style="{ color: scoreResult.color }">
         {{ scoreNum }}
@@ -65,6 +189,10 @@ function onOfficialAccountError(e: any) {
 </template>
 
 <style lang="scss" scoped>
+.chart-container {
+  width: 100%;
+}
+
 :deep(.official-account) {
   width: 90%;
   margin: 0 auto;

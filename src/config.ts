@@ -5,7 +5,7 @@ import { withCdnPrefix } from './utils/file';
 export const APP_ID = appId;
 
 /** 主题色 */
-export const THEME_COLOR = '#356899';
+export const THEME_COLOR = '#279d9f';
 /** 背景色 */
 export const BG_COLOR = '#f9f9fd';
 

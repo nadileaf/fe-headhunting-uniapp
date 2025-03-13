@@ -4,6 +4,7 @@ declare namespace RoutePages {
     | '/pages/sts-evaluation/index'
     | '/pages/sts-evaluation/ror'
     | '/pages/sts-evaluation/ros'
+    | '/pages/sts-evaluation/evaluation'
     | '/pages/sts-evaluation/result'
     | '/packages/common/file-list'
     | '/packages/common/web-view'

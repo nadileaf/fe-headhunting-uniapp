@@ -7,7 +7,7 @@ const { response: banners } = useRequest(() => bannerService.query({ projectName
 </script>
 
 <template>
-  <view class="container has-footer">
+  <view class="container has-footer bg-white">
     <view>
       <view v-if="banners?.length">
         <Banner :data="banners" />
