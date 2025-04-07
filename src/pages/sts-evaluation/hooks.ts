@@ -33,9 +33,15 @@ export function useWeightScore(weights: Ref<Weights>, scores: Ref<Scores>) {
       return false;
     }
 
-    for (const score of Object.values(scores.value)) {
+    const scoresNumbers = Object.values(scores.value).map((val) => Number(val));
+    for (const score of scoresNumbers) {
+      if (typeof score === 'number' && isNaN(score)) {
+        message.error('得分必须为数字！');
+        return false;
+      }
+
       if (score === null || score <= -1 || score >= 1) {
-        message.error('每项得分必须在-1到1之间');
+        message.error('每项得分必须在-1到1之间，1和-1都不被允许。');
         return false;
       }
     }

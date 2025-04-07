@@ -3,11 +3,18 @@ import Banner from '@/components/business/other/banner.vue';
 import { useRequest } from '@/hooks/useRequest';
 import { bannerService } from '@/services/banner';
 
+type Props = {
+  hasFooter?: boolean;
+};
+const props = withDefaults(defineProps<Props>(), {
+  hasFooter: true
+});
+
 const { response: banners } = useRequest(() => bannerService.query({ projectName: '测评' }));
 </script>
 
 <template>
-  <view class="container has-footer bg-white">
+  <view class="container bg-white" :class="[props.hasFooter ? 'has-footer' : '']">
     <view>
       <view v-if="banners?.length">
         <Banner :data="banners" />
