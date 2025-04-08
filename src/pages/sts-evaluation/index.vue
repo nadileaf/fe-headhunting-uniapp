@@ -30,7 +30,7 @@ function handleStart() {
       <view>- 职位名称的受尊敬度提升/减少</view>
     </view>
     <view class="mt-1 text-sm">
-      <view>潜在分险（失败）</view>
+      <view>潜在风险（失败）</view>
       <view>B）跳槽后的潜在风险</view>
       <view>- 新公司文化适配度</view>
       <view>- 新岗位技能/经验匹配度</view>
