@@ -41,9 +41,7 @@ export function useWeightScore(weights: Ref<Weights>, scores: Ref<Scores>) {
       }
 
       if (score === null || score <= -1 || score >= 1) {
-        message.error('取值在-1-1之间，1代表完美，没有完美offer', {
-          duration: 3000
-        });
+        message.error('每项得分必须在-1到1之间，1和-1都不被允许。');
         return false;
       }
     }
