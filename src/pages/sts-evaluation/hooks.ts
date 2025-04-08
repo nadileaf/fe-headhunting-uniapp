@@ -41,7 +41,7 @@ export function useWeightScore(weights: Ref<Weights>, scores: Ref<Scores>) {
       }
 
       if (score === null || score <= -1 || score >= 1) {
-        message.error('取值在-1-1之间，1代表100%，没有100%完美的offer', {
+        message.error('取值在-1-1之间，1代表完美，没有完美offer', {
           duration: 3000
         });
         return false;
