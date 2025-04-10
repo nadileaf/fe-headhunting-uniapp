@@ -7,7 +7,7 @@ import { generateUrl } from '@/utils/common';
 
 const router = useRouter();
 
-useShare({ title: 'STS测评', path: generateUrl(router.currentPageUrl) });
+useShare({ path: generateUrl(router.currentPageUrl) });
 
 function handleStart() {
   router.push('/pages/sts-evaluation/evaluation');

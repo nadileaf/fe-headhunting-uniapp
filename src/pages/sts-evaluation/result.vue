@@ -16,7 +16,7 @@ const router = useRouter();
 const scoreNum = computed(() => Number(props.score ?? 0));
 const sharePath = computed(() => generateUrl(router.currentPageUrl, props));
 
-useShare({ title: '跳槽决策结果', path: sharePath });
+useShare({ path: sharePath });
 
 interface ScoreConfigItem {
   min: number;

@@ -10,7 +10,7 @@
     {
       "path": "pages/sts-evaluation/index",
       "style": {
-        "navigationBarTitleText": "STS测评",
+        "navigationBarTitleText": "跳槽决策工具",
         "backgroundColor": "#ffffff"
       }
     },

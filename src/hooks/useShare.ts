@@ -40,12 +40,12 @@ export function useShare(params?: { title?: MaybeRef<string>; path?: MaybeRef<st
       _title = _title.substring(0, 1) + '**的简历';
 
     return {
-      title: _title || '办公无界 效率无限',
+      title: _title || '8分钟了解自己是否要跳槽',
       path: sharePath.value,
       imageUrl:
         params?.imageUrl === 'default '
           ? undefined
-          : unref(params?.imageUrl) ?? 'https://cdn-fe.mesoor.com/custom/cgl/assets/logo/sts-share.jpg'
+          : unref(params?.imageUrl) ?? 'https://cdn-fe.mesoor.com/custom/cgl/assets/logo/sts-share-1.jpg'
     };
   });
 }
