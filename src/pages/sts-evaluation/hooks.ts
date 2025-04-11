@@ -29,11 +29,19 @@ export function useWeightScore(weights: Ref<Weights>, scores: Ref<Scores>) {
     const totalWeight = values.reduce((sum, val) => (sum ?? 0) + (val ?? 0), 0);
 
     if (totalWeight / 100 !== 1) {
-      message.error('权重比例加总必须等于100%');
+      message.error('权重比例加总必须等于100%！');
+      return false;
+    }
+
+    console.log('scores.value', scores.value);
+
+    if (Object.values(scores.value).some((val) => val === null)) {
+      message.error('请填写所有分值！');
       return false;
     }
 
     const scoresNumbers = Object.values(scores.value).map((val) => Number(val));
+
     for (const score of scoresNumbers) {
       if (typeof score === 'number' && isNaN(score)) {
         message.error('得分必须为数字！');
