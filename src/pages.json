@@ -31,14 +31,14 @@
     {
       "path": "pages/sts-evaluation/evaluation",
       "style": {
-        "navigationBarTitleText": "跳槽决策评估",
+        "navigationBarTitleText": "跳槽决策工具",
         "backgroundColor": "#ffffff"
       }
     },
     {
       "path": "pages/sts-evaluation/result",
       "style": {
-        "navigationBarTitleText": "跳槽决策结果",
+        "navigationBarTitleText": "跳槽决策工具",
         "backgroundColor": "#ffffff"
       }
     }
